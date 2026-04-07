@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}Watchlist — StockInsight{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1 class="page-title"><i class="bi bi-star-fill"></i> YOUR WATCHLIST</h1>
+    <span class="page-sub">{{ stocks|length }} stock{{ 's' if stocks|length != 1 else '' }} tracked</span>
+  </div>
+</div>
+
+{% if stocks %}
+<div class="watchlist-grid">
+  {% for s in stocks %}
+  <div class="wl-card {% if s.change_pct > 0 %}wl-up{% elif s.change_pct < 0 %}wl-down{% endif %}">
+    <div class="wl-card-top">
+      <div class="wl-ticker-block">
+        <a href="/stock/{{ s.ticker }}" class="wl-ticker">{{ s.ticker }}</a>
+        <div class="wl-name">{{ s.company_name }}</div>
+      </div>
+      <div class="wl-price-block">
+        <div class="wl-price">${{ "%.2f"|format(s.price) }}</div>
+        <div class="wl-change {% if s.change_pct >= 0 %}positive{% else %}negative{% endif %}">
+          {% if s.change_pct >= 0 %}▲{% else %}▼{% endif %}
+          {{ "%.2f"|format(s.change_pct|abs) }}%
+        </div>
+      </div>
+    </div>
+
+    <div class="wl-card-bottom">
+      <span class="wl-added">Added {{ s.added_at[:10] if s.added_at else 'N/A' }}</span>
+      <div class="wl-actions">
+        <a href="/stock/{{ s.ticker }}" class="si-btn si-btn-xs">VIEW</a>
+        <form action="/remove" method="POST" style="display:inline">
+          <input type="hidden" name="ticker" value="{{ s.ticker }}" />
+          <input type="hidden" name="redirect" value="watchlist" />
+          <button type="submit" class="si-btn si-btn-xs si-btn-danger">REMOVE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<!-- Empty State -->
+<div class="empty-watchlist">
+  <div class="empty-icon">⭐</div>
+  <div class="empty-title">Your watchlist is empty</div>
+  <div class="empty-sub">Search for a stock and add it to your watchlist to track it here.</div>
+  <a href="/" class="si-btn si-btn-primary mt-4">Search Stocks</a>
+</div>
+{% endif %}
+
+{% endblock %}

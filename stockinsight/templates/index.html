@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block title %}StockInsight — Market Intelligence{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+
+  <!-- Scanline overlay -->
+  <div class="scanlines"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">MARKET INTELLIGENCE TERMINAL</div>
+
+    <h1 class="hero-title">
+      ANALYSE.<br>
+      <span class="hero-accent">DECIDE.</span><br>
+      INVEST.
+    </h1>
+
+    <p class="hero-sub">
+      Real-time fundamentals, technical indicators, and earnings data —<br>
+      all in one terminal-grade dashboard.
+    </p>
+
+    <!-- Big Search -->
+    <form class="hero-search-form" action="/search" method="GET" autocomplete="off">
+      <div class="hero-search-wrapper">
+        <span class="hero-search-prefix">$</span>
+        <input
+          type="text"
+          name="ticker"
+          id="heroTicker"
+          class="hero-search-input"
+          placeholder="Enter ticker symbol (e.g. AAPL)"
+          maxlength="10"
+          autofocus
+        />
+        <button type="submit" class="hero-search-btn">
+          ANALYSE <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+    </form>
+
+    <!-- Popular tickers -->
+    <div class="popular-tickers">
+      <span class="popular-label">POPULAR:</span>
+      {% for t in [("AAPL","Apple"), ("MSFT","Microsoft"), ("NVDA","NVIDIA"), ("TSLA","Tesla"), ("GOOGL","Alphabet"), ("AMZN","Amazon")] %}
+        <a href="/stock/{{ t[0] }}" class="ticker-chip">{{ t[0] }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Decorative ticker tape -->
+  <div class="ticker-tape-wrap">
+    <div class="ticker-tape">
+      <span>AAPL &nbsp; +1.24%</span><span class="dot">·</span>
+      <span>MSFT &nbsp; +0.87%</span><span class="dot">·</span>
+      <span>NVDA &nbsp; +3.51%</span><span class="dot">·</span>
+      <span>TSLA &nbsp; −0.43%</span><span class="dot">·</span>
+      <span>AMZN &nbsp; +1.09%</span><span class="dot">·</span>
+      <span>META &nbsp; +2.12%</span><span class="dot">·</span>
+      <span>JPM &nbsp; +0.55%</span><span class="dot">·</span>
+      <span>GOOGL &nbsp; +0.98%</span><span class="dot">·</span>
+      <span>AMD &nbsp; +1.77%</span><span class="dot">·</span>
+      <span>NFLX &nbsp; −0.22%</span><span class="dot">·</span>
+      <!-- Repeat for seamless loop -->
+      <span>AAPL &nbsp; +1.24%</span><span class="dot">·</span>
+      <span>MSFT &nbsp; +0.87%</span><span class="dot">·</span>
+      <span>NVDA &nbsp; +3.51%</span><span class="dot">·</span>
+      <span>TSLA &nbsp; −0.43%</span><span class="dot">·</span>
+      <span>AMZN &nbsp; +1.09%</span><span class="dot">·</span>
+      <span>META &nbsp; +2.12%</span><span class="dot">·</span>
+    </div>
+  </div>
+</div>
+
+<!-- Feature Cards -->
+<div class="features-section">
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Technical Analysis</div>
+      <div class="feature-desc">MA20, MA50, RSI indicators with trend signals</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">Earnings & Financials</div>
+      <div class="feature-desc">Quarterly revenue, net income, and EPS data</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <div class="feature-title">Price Charts</div>
+      <div class="feature-desc">Interactive 30-day price history visualised</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⭐</div>
+      <div class="feature-title">Watchlist</div>
+      <div class="feature-desc">Save and track your favourite stocks</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

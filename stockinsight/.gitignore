@@ -1,0 +1,17 @@
+
+# Python & virtual environment
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Database (ephemeral, do not commit)
+database/*.db
+
+# VS Code
+.vscode/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
