@@ -2,11 +2,6 @@
 
 **StockInsight** is a lightweight web application that provides real-time stock data and basic technical indicators for major equities. Built with **Flask** on the backend and deployed on **AWS EC2**, it fetches live market data via the Yahoo Finance API (yfinance) and displays interactive charts using **Plotly**. Static assets (CSS, JavaScript) are hosted on **AWS S3** for faster content delivery. The app is containerized with **Gunicorn** and proxied through **Nginx**, with **systemd** ensuring automatic restart on failure. IAM roles enforce least-privilege access, and security groups restrict inbound traffic to SSH (admin) and HTTP (public). Perfect for learning cloud deployment patterns while exploring market trends.
 
----
-
-Feel free to adjust the tone (more technical or more user-focused) based on your audience. Let me know if you'd like a shorter version or one emphasizing different features (e.g., machine learning predictions, portfolio tracking, etc.).
-
-
 # StockInsight — Setup & Run Guide
 
 ## Prerequisites
